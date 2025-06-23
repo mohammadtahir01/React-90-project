@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { FaDiceOne,FaDiceTwo,FaDiceThree,FaDiceFour,FaDiceFive,FaDiceSix } from "react-icons/fa6";
+import './App.css'
 function App() {
 
   const dice = [<FaDiceOne />,
@@ -20,11 +21,16 @@ function App() {
 
   return (
     <>
-    <div>
+    <div className="container">
+      <h2>Dice Rolling</h2>
+    <div className="main">
       <div>{die}</div>
       <div>{die1}</div>
     </div>
+    <div>
       <button onClick={roll}>click</button>
+      </div>
+      </div>
     </>
   )
 }
