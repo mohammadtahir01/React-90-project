@@ -1,61 +1,58 @@
-// import React, { useState } from "react";
-import React, { useState } from "react";
+import React, { useState } from 'react';
+const App=()=>{
+  const [userScore, setUserScore] = useState(0);
+  const [computerScore, setComputerScore] = useState(0);
+  const [result, setResult] = useState('');
+  const choices = ['Rock', 'Paper', 'Scissor'];
+  const computerChoice = choices[Math.floor(Math.random() * choices.length)];
+  console.log('Computer choice:', computerChoice);
 
-const choices = ["Rock", "Paper", "Scissors"];
-
-const getResult = (user, computer) => {
-  if (user === computer) return "It's a Tie!";
-  if (
-    (user === "Rock" && computer === "Scissors") ||
-    (user === "Paper" && computer === "Rock") ||
-    (user === "Scissors" && computer === "Paper")
-  ) {
-    return "You Win!";
+  const rock=()=>{
+    if(computerChoice === 'Rock'){
+      setResult('It\'s a tie!');
+    } else if(computerChoice === 'Paper'){
+      setComputerScore(computerScore + 1);
+      setResult('You lose! Paper beats Rock');
+    } else {
+      setUserScore(userScore + 1);
+      setResult('You win! Rock beats Scissor');
+    }
   }
-  return "You Lose!";
-};
 
-const App = () => {
-  const [userChoice, setUserChoice] = useState("");
-  const [computerChoice, setComputerChoice] = useState("");
-  const [result, setResult] = useState("");
+  const paper=()=>{
+    if(computerChoice === 'Rock'){
+      setUserScore(userScore + 1);
+      setResult('You win! Paper beats Rock');
+    } else if(computerChoice === 'Paper'){
+      setResult('It\'s a tie!');
+    } else {
+      setComputerScore(computerScore + 1);
+      setResult('You lose! Scissor beats Paper');
+    }
+  }
+  const scissor=()=>{
+    if(computerChoice === 'Rock'){
+      setComputerScore(computerScore + 1);
+      setResult('You lose! Rock beats Scissor');
+    } else if(computerChoice === 'Paper'){
+      setUserScore(userScore + 1);
+      setResult('You win! Scissor beats Paper');
+    } else {
+      setResult('It\'s a tie!');
+    }
+  }
 
-  const playGame = (userPick) => {
-    const computerPick = choices[Math.floor(Math.random() * 3)];
-    const gameResult = getResult(userPick, computerPick);
-
-    setUserChoice(userPick);
-    setComputerChoice(computerPick);
-    setResult(gameResult);
-  };
-
-  return (
-    <div style={{ textAlign: "center", marginTop: "50px" }}>
-      <h2>Rock Paper Scissors</h2>
-      <div>
-        {choices.map((choice) => (
-          <button
-            key={choice}
-            onClick={() => playGame(choice)}
-            style={{
-              margin: "10px",
-              padding: "10px 20px",
-              fontSize: "16px",
-            }}
-          >
-            {choice}
-          </button>
-        ))}
-      </div>
-      {result && (
-        <>
-          <p>Your choice: <strong>{userChoice}</strong></p>
-          <p>Computer's choice: <strong>{computerChoice}</strong></p>
-          <h3>{result}</h3>
-        </>
-      )}
-    </div>
-  );
-};
-
+  return(
+    <>
+    <h1>Rock Paper Scissor Game</h1>
+    <button onClick={rock}>Rock</button>
+    <button onClick={paper}>Paper</button>
+    <button onClick={scissor}>Scissor</button>
+    <p>Your Score is:{userScore}</p>
+    <p>Computer Score is:{computerScore}</p>
+    <p>Result:{result}</p>
+    <p>Click on the button to play the game</p>
+    </>
+  )
+}
 export default App;
