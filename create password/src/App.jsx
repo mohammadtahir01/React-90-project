@@ -24,17 +24,17 @@ const App=()=>{
 
  let showMessage = null;
 
-  if (valid !== "") {
-    showMessage = (
-      <span style={{ fontWeight: "bold", color: "red" }}>
-        {valid}
-      </span>
-    );
-  }
+  // if (valid !== "") {
+  //   showMessage = (
+  //     <span style={{ fontWeight: "bold", color: "red" }}>
+  //       {valid}
+  //     </span>
+  //   );
+  // }
   return(
     <>
-    enter password:<input type="text" onChange={checkValue}/>
-    <p>{showMessage}</p>
+    Enter Password:<input type="text" onChange={checkValue}/>
+    <p style={{fontWeight: "bold", color: "red"}}>{valid}</p>
     </>
   )
 }
